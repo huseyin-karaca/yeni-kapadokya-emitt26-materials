@@ -1,6 +1,6 @@
-# HTML → PDF (Roll-up) Dönüştürme
+# HTML → PDF Dönüştürme (Broşür + Kartvizit + Roll-up)
 
-Bu klasördeki `turkce.html` ve `ingilizce.html` dosyalarını, tasarımı bozmadan (arka planlar dahil) PDF’e dönüştürmek için `pdf.js` kullanılır.
+Bu klasördeki HTML dosyalarını, tasarımı bozmadan (arka planlar dahil) PDF’e dönüştürmek için Puppeteer tabanlı script’ler kullanılır.
 
 ## Gereksinimler
 
@@ -17,9 +17,11 @@ npm install
 
 ## PDF üretimi
 
+### Roll-up (mevcut)
+
 ```bash
 cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
-node pdf.js
+npm run pdf
 ```
 
 Üretilen dosyalar:
@@ -27,13 +29,55 @@ node pdf.js
 - `turkce.pdf`
 - `ingilizce.pdf`
 
+### Kartvizit
+
+Vektör (metin/vektör korunur):
+
+```bash
+cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
+npm run pdf:kartvizit
+```
+
+Raster / flattened (Preview-safe):
+
+```bash
+cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
+npm run pdf:kartvizit:raster
+```
+
+Üretilen dosyalar:
+
+- `kartvizit.pdf`
+- `kartvizit-raster.pdf`
+
+### Broşür
+
+Vektör (TR + EN):
+
+```bash
+cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
+npm run pdf:brochure
+```
+
+Raster / flattened (TR + EN):
+
+```bash
+cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
+npm run pdf:brochure:raster
+```
+
+Üretilen dosyalar:
+
+- `brochure_tr.pdf`, `brochure_tr-raster.pdf`
+- `brochure_en.pdf`, `brochure_en-raster.pdf`
+
 ## macOS Preview farkı (gölge/efekt)
 
 macOS Preview bazen vektör PDF’lerde (özellikle yarı saydam gölgelerde) Chrome’dan farklı render edebilir. Bu durumda PDF’i **flatten (raster)** üretmek en garanti çözümdür:
 
 ```bash
 cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
-node pdf.js --raster
+npm run pdf -- --raster
 ```
 
 Üretilen dosyalar:
@@ -47,3 +91,4 @@ node pdf.js --raster
 - PDF sayfa boyutu `pdf.js` içinde **850×2000px** olarak ayarlanmıştır (tek sayfa).
 
 
+ 

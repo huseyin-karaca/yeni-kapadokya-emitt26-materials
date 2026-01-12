@@ -8,7 +8,11 @@
     "node": ">=18"
   },
   "scripts": {
-    "pdf": "node pdf.js"
+    "pdf": "node pdf.js",
+    "pdf:kartvizit": "node pdf-kartvizit.js",
+    "pdf:kartvizit:raster": "node pdf-kartvizit.js --raster",
+    "pdf:brochure": "node pdf-brochure.js",
+    "pdf:brochure:raster": "node pdf-brochure.js --raster"
   },
   "dependencies": {
     "puppeteer": "24.34.0"
