@@ -27,6 +27,20 @@ node pdf.js
 - `turkce.pdf`
 - `ingilizce.pdf`
 
+## macOS Preview farkı (gölge/efekt)
+
+macOS Preview bazen vektör PDF’lerde (özellikle yarı saydam gölgelerde) Chrome’dan farklı render edebilir. Bu durumda PDF’i **flatten (raster)** üretmek en garanti çözümdür:
+
+```bash
+cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
+node pdf.js --raster
+```
+
+Üretilen dosyalar:
+
+- `turkce-raster.pdf`
+- `ingilizce-raster.pdf`
+
 ## Notlar
 
 - `node_modules/` **kodun çalışması için gereklidir**, fakat repoda tutmak zorunda değilsiniz; silerseniz tekrar `npm install` ile kurulabilir.
