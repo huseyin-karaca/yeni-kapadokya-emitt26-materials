@@ -161,7 +161,7 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
 }
 
 (async () => {
-  const projectDir = __dirname;
+  const projectDir = path.resolve(__dirname, '..');
   const chromeExecutable = pickChromeExecutable();
 
   const browser = await puppeteer.launch({
@@ -172,8 +172,8 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
 
   try {
     const targets = [
-      { html: "brochure_tr.html", base: "brochure_tr" },
-      { html: "brochure_en.html", base: "brochure_en" },
+      { html: "src/brochure_tr.html", base: "brochure_tr" },
+      { html: "src/brochure_en.html", base: "brochure_en" },
     ];
 
     const convert = rasterMode ? htmlToRasterPdf : htmlToVectorPdf;
@@ -183,7 +183,7 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
       if (!fs.existsSync(htmlPath)) continue;
 
       const outPath = path.join(
-        projectDir,
+        projectDir, "dist",
         rasterMode ? `${t.base}-raster.pdf` : `${t.base}.pdf`
       );
       await convert({ browser, htmlPath, outPath });
@@ -194,4 +194,3 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
     await browser.close();
   }
 })();
-

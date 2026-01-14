@@ -29,31 +29,34 @@ function pickChromeExecutable() {
 }
 
 async function inlineSvgLogo(page, projectDir) {
-  const logoFilename = "logo-vector-yazisiz.svg";
-  const logoPath = path.join(projectDir, logoFilename);
-  try {
-    if (fs.existsSync(logoPath)) {
-      const svgContent = fs.readFileSync(logoPath, "utf8");
-      const base64 = Buffer.from(svgContent).toString("base64");
-      const dataUri = `data:image/svg+xml;base64,${base64}`;
-
-      await page.evaluate((uri, filename) => {
-        const imgs = document.querySelectorAll("img");
-        for (const img of imgs) {
-          const src = img.getAttribute("src");
-          if (src && (src === filename || src.endsWith("/" + filename))) {
-            img.src = uri;
-          }
+  const logos = ["logo-vector-yazisiz.svg", "logo-vector-ingilizce.svg", "logo-vector-turkce.svg"];
+  
+  for (const logoFilename of logos) {
+      const logoPath = path.join(projectDir, "assets", "logos", logoFilename);
+      try {
+        if (fs.existsSync(logoPath)) {
+          const svgContent = fs.readFileSync(logoPath, "utf8");
+          const base64 = Buffer.from(svgContent).toString("base64");
+          const dataUri = `data:image/svg+xml;base64,${base64}`;
+    
+          await page.evaluate((uri, filename) => {
+            const imgs = document.querySelectorAll("img");
+            for (const img of imgs) {
+              const src = img.getAttribute("src");
+              if (src && src.includes(filename)) {
+                img.src = uri;
+              }
+            }
+          }, dataUri, logoFilename);
         }
-      }, dataUri, logoFilename);
-    }
-  } catch (e) {
-    console.error("Failed to inline SVG logo:", e);
+      } catch (e) {
+        console.error("Failed to inline SVG logo:", e);
+      }
   }
 }
 
 (async () => {
-  const projectDir = __dirname;
+  const projectDir = path.resolve(__dirname, '..');
   const chromeExecutable = pickChromeExecutable();
 
   const browser = await puppeteer.launch({
@@ -64,7 +67,7 @@ async function inlineSvgLogo(page, projectDir) {
   });
 
   try {
-    const htmlPath = path.join(projectDir, "instagram-kare.html");
+    const htmlPath = path.join(projectDir, "src", "instagram-kare.html");
     if (!fs.existsSync(htmlPath)) {
       throw new Error(`Missing instagram-kare.html at ${htmlPath}`);
     }
@@ -83,7 +86,7 @@ async function inlineSvgLogo(page, projectDir) {
         if (document.fonts && document.fonts.ready) await document.fonts.ready;
     });
 
-    const outPath = path.join(projectDir, "instagram-kare.png");
+    const outPath = path.join(projectDir, "dist", "instagram-kare.png");
     
     await page.screenshot({
       path: outPath,

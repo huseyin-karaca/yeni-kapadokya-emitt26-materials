@@ -143,7 +143,7 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
 }
 
 (async () => {
-  const projectDir = __dirname;
+  const projectDir = path.resolve(__dirname, '..');
   const chromeExecutable = pickChromeExecutable();
 
   const browser = await puppeteer.launch({
@@ -154,11 +154,11 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
 
   try {
     const turkceOut = path.join(
-      projectDir,
+      projectDir, "dist",
       rasterMode ? "turkce-raster.pdf" : "turkce.pdf"
     );
     const ingilizceOut = path.join(
-      projectDir,
+      projectDir, "dist",
       rasterMode ? "ingilizce-raster.pdf" : "ingilizce.pdf"
     );
 
@@ -166,17 +166,18 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
 
     await convert({
       browser,
-      htmlPath: path.join(projectDir, "turkce.html"),
+      htmlPath: path.join(projectDir, "src", "turkce.html"),
       outPath: turkceOut,
     });
+    console.log(`Wrote ${turkceOut}`);
 
     await convert({
       browser,
-      htmlPath: path.join(projectDir, "ingilizce.html"),
+      htmlPath: path.join(projectDir, "src", "ingilizce.html"),
       outPath: ingilizceOut,
     });
+    console.log(`Wrote ${ingilizceOut}`);
   } finally {
     await browser.close();
   }
 })();
-

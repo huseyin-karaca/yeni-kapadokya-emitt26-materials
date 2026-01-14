@@ -64,27 +64,38 @@ async function ensureImagesReady(page) {
 }
 
 async function inlineSvgLogo(page, projectDir) {
-  const logoFilename = "logo-vector-yazisiz.svg";
-  const logoPath = path.join(projectDir, logoFilename);
-  try {
-    if (fs.existsSync(logoPath)) {
-      const svgContent = fs.readFileSync(logoPath, "utf8");
-      const base64 = Buffer.from(svgContent).toString("base64");
-      const dataUri = `data:image/svg+xml;base64,${base64}`;
-
-      await page.evaluate((uri, filename) => {
-        const imgs = document.querySelectorAll("img");
-        for (const img of imgs) {
-          const src = img.getAttribute("src");
-          if (src && (src === filename || src.endsWith("/" + filename))) {
-            img.src = uri;
-          }
+  // Try both logo variants since english card might use different logo?
+  // Actually html files now point to ../assets/logos/logo-vector-*.svg
+  // We need to resolve that relative to html or just use absolute path logic here.
+  // The original script was inlining by finding img src matching filename.
+  // Now src is relative path.
+  // Best approach: Read the file from assets/logos and inline it based on filename in src.
+  
+  const logos = ["logo-vector-yazisiz.svg", "logo-vector-ingilizce.svg", "logo-vector-turkce.svg"];
+  
+  for (const logoFilename of logos) {
+      const logoPath = path.join(projectDir, "assets", "logos", logoFilename);
+      try {
+        if (fs.existsSync(logoPath)) {
+          const svgContent = fs.readFileSync(logoPath, "utf8");
+          const base64 = Buffer.from(svgContent).toString("base64");
+          const dataUri = `data:image/svg+xml;base64,${base64}`;
+    
+          await page.evaluate((uri, filename) => {
+            const imgs = document.querySelectorAll("img");
+            for (const img of imgs) {
+              const src = img.getAttribute("src");
+              // Check if src contains filename
+              if (src && src.includes(filename)) {
+                img.src = uri;
+              }
+            }
+          }, dataUri, logoFilename);
         }
-      }, dataUri, logoFilename);
-    }
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error("Failed to inline SVG logo:", e);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(`Failed to inline SVG logo ${logoFilename}:`, e);
+      }
   }
 }
 
@@ -123,7 +134,7 @@ async function applyKartvizitPrintOverrides(page) {
   });
 }
 
-async function htmlToVectorPdf({ browser, htmlPath, outPath }) {
+async function htmlToVectorPdf({ browser, htmlPath, outPath, projectDir }) {
   const page = await browser.newPage();
 
   // Reasonable viewport; PDF page size is controlled by CSS @page.
@@ -131,7 +142,7 @@ async function htmlToVectorPdf({ browser, htmlPath, outPath }) {
   await page.goto(toFileUrl(htmlPath), { waitUntil: "networkidle0" });
 
   // Inline SVG logo
-  await inlineSvgLogo(page, path.dirname(htmlPath));
+  await inlineSvgLogo(page, projectDir);
 
   // Ensure logo (and other local assets) are actually present before printing.
   await page.waitForFunction(() => {
@@ -171,12 +182,12 @@ async function screenshotElements({ page, selector }) {
   return { width, height, images };
 }
 
-async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
+async function htmlToRasterPdf({ browser, htmlPath, outPath, projectDir }) {
   // 1) Render each card face as a hi-res PNG.
   const renderPage = await browser.newPage();
   await renderPage.setViewport({ width: 1400, height: 900, deviceScaleFactor: 3 });
   await renderPage.goto(toFileUrl(htmlPath), { waitUntil: "networkidle0" });
-  await inlineSvgLogo(renderPage, path.dirname(htmlPath));
+  await inlineSvgLogo(renderPage, projectDir);
   await applyKartvizitPrintOverrides(renderPage);
 
   const { width, height, images } = await screenshotElements({
@@ -226,7 +237,7 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
 }
 
 (async () => {
-  const projectDir = __dirname;
+  const projectDir = path.resolve(__dirname, '..');
   const chromeExecutable = pickChromeExecutable();
 
   const browser = await puppeteer.launch({
@@ -236,19 +247,24 @@ async function htmlToRasterPdf({ browser, htmlPath, outPath }) {
   });
 
   try {
-    const htmlPath = path.join(projectDir, "kartvizit.html");
-    if (!fs.existsSync(htmlPath)) {
-      throw new Error(`Missing kartvizit.html at ${htmlPath}`);
-    }
+    const targets = [
+        { html: "src/kartvizit.html", base: "kartvizit" },
+        { html: "src/kartvizit_en.html", base: "kartvizit_en" }
+    ];
 
-    const outPath = path.join(projectDir, rasterMode ? "kartvizit-raster.pdf" : "kartvizit.pdf");
     const convert = rasterMode ? htmlToRasterPdf : htmlToVectorPdf;
 
-    await convert({ browser, htmlPath, outPath });
-    // eslint-disable-next-line no-console
-    console.log(`Wrote ${outPath}`);
+    for (const t of targets) {
+        const htmlPath = path.join(projectDir, t.html);
+        if (!fs.existsSync(htmlPath)) continue;
+
+        const outPath = path.join(projectDir, "dist", rasterMode ? `${t.base}-raster.pdf` : `${t.base}.pdf`);
+        await convert({ browser, htmlPath, outPath, projectDir });
+        // eslint-disable-next-line no-console
+        console.log(`Wrote ${outPath}`);
+    }
+
   } finally {
     await browser.close();
   }
 })();
-

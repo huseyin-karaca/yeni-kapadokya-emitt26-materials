@@ -8,15 +8,15 @@
     "node": ">=18"
   },
   "scripts": {
-    "pdf": "node pdf.js",
-    "pdf:kartvizit": "node pdf-kartvizit.js",
-    "pdf:kartvizit:raster": "node pdf-kartvizit.js --raster",
-    "pdf:brochure": "node pdf-brochure.js",
-    "pdf:brochure:raster": "node pdf-brochure.js --raster"
+    "pdf": "node scripts/pdf.js",
+    "pdf:kartvizit": "node scripts/pdf-kartvizit.js",
+    "pdf:kartvizit:raster": "node scripts/pdf-kartvizit.js --raster",
+    "pdf:brochure": "node scripts/pdf-brochure.js",
+    "pdf:brochure:raster": "node scripts/pdf-brochure.js --raster",
+    "render:kapak": "node scripts/render-kapak.js",
+    "render:kare": "node scripts/render-kare.js"
   },
   "dependencies": {
     "puppeteer": "24.34.0"
   }
 }
-
-

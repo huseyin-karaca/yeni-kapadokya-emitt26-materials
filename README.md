@@ -1,94 +1,59 @@
-# HTML → PDF Dönüştürme (Broşür + Kartvizit + Roll-up)
+# Yeni Kapadokya Turizm - EMITT 2026 Fuar Tanıtım Materyalleri
 
-Bu klasördeki HTML dosyalarını, tasarımı bozmadan (arka planlar dahil) PDF’e dönüştürmek için Puppeteer tabanlı script’ler kullanılır.
+Bu proje, Yeni Kapadokya Turizm'in EMITT 2026 fuarı için hazırlanan tanıtım materyallerini (broşür, roll-up, kartvizit, sosyal medya görselleri) içerir. Tasarımlar HTML/CSS ile hazırlanmış olup, Puppeteer script'leri aracılığıyla yüksek kaliteli PDF ve PNG formatlarına dönüştürülmektedir.
 
-## Gereksinimler
+## Proje İçeriği
 
-- Node.js **18+**
+- **Broşür:** A4 3 kırım (TR ve EN)
+- **Roll-up:** 85x200cm (TR ve EN)
+- **Kartvizit:** 85x55mm (TR ve EN)
+- **Sosyal Medya:** Kapak ve Instagram kare görselleri
+
+## Klasör Yapısı
+
+- `src/`: HTML kaynak dosyaları (`brochure_en.html`, `turkce.html` vb.)
+- `assets/`: 
+  - `images/`: PNG/JPG görseller
+  - `logos/`: SVG logolar
+- `scripts/`: PDF ve görsel oluşturma script'leri (Node.js)
+- `dist/`: Oluşturulan çıktı dosyaları (PDF, PNG)
 
 ## Kurulum
 
-Eğer `node_modules/` klasörü yoksa:
+Projeyi çalıştırmadan önce bağımlılıkları yükleyin:
 
 ```bash
-cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
 npm install
 ```
 
-## PDF üretimi
+## Kullanım (PDF ve Görsel Üretimi)
 
-### Roll-up (mevcut)
+Tüm çıktılar `dist/` klasörüne kaydedilir.
 
+### 1. Roll-up (TR + EN)
 ```bash
-cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
 npm run pdf
 ```
+_Raster çıktı (gölgeler için daha güvenli) için:_ `npm run pdf -- --raster`
 
-Üretilen dosyalar:
-
-- `turkce.pdf`
-- `ingilizce.pdf`
-
-### Kartvizit
-
-Vektör (metin/vektör korunur):
-
+### 2. Broşür (TR + EN)
 ```bash
-cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
-npm run pdf:kartvizit
-```
-
-Raster / flattened (Preview-safe):
-
-```bash
-cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
-npm run pdf:kartvizit:raster
-```
-
-Üretilen dosyalar:
-
-- `kartvizit.pdf`
-- `kartvizit-raster.pdf`
-
-### Broşür
-
-Vektör (TR + EN):
-
-```bash
-cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
 npm run pdf:brochure
 ```
+_Raster çıktı için:_ `npm run pdf:brochure:raster`
 
-Raster / flattened (TR + EN):
-
+### 3. Kartvizit (TR + EN)
 ```bash
-cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
-npm run pdf:brochure:raster
+npm run pdf:kartvizit
 ```
+_Raster çıktı için:_ `npm run pdf:kartvizit:raster`
 
-Üretilen dosyalar:
-
-- `brochure_tr.pdf`, `brochure_tr-raster.pdf`
-- `brochure_en.pdf`, `brochure_en-raster.pdf`
-
-## macOS Preview farkı (gölge/efekt)
-
-macOS Preview bazen vektör PDF’lerde (özellikle yarı saydam gölgelerde) Chrome’dan farklı render edebilir. Bu durumda PDF’i **flatten (raster)** üretmek en garanti çözümdür:
-
+### 4. Sosyal Medya Görselleri
 ```bash
-cd "/Users/huseyinkaraca/Desktop/fuar2026-gemini/final-tasarım"
-npm run pdf -- --raster
+npm run render:kapak   # Kapak görseli (kapak.png)
+npm run render:kare    # Instagram kare görseli (instagram-kare.png)
 ```
-
-Üretilen dosyalar:
-
-- `turkce-raster.pdf`
-- `ingilizce-raster.pdf`
 
 ## Notlar
-
-- `node_modules/` **kodun çalışması için gereklidir**, fakat repoda tutmak zorunda değilsiniz; silerseniz tekrar `npm install` ile kurulabilir.
-- PDF sayfa boyutu `pdf.js` içinde **850×2000px** olarak ayarlanmıştır (tek sayfa).
-
-
- 
+- **Raster vs Vektör:** macOS Preview gibi bazı görüntüleyicilerde vektör PDF'lerdeki gölgeler hatalı görünebilir. Bu durumda `--raster` komutlarını kullanarak piksellere dökülmüş (flattened) PDF üretebilirsiniz.
+- Tasarım değişiklikleri için `src/` altındaki HTML dosyalarını düzenleyin.
