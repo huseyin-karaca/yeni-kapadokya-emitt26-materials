@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1080, initial-scale=1.0">
+    <title>Yeni Kapadokya - Instagram Kare</title>
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-red: #E30613;
+            --ink: #1f1f1f;
+            --dark: #333333;
+            --paper: #ffffff;
+            --bg-grad: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1080px;
+            height: 1080px;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-grad);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            box-sizing: border-box;
+            border: 20px solid #fff; /* Beyaz çerçeve */
+            outline: 2px solid #eee; /* İnce gri çizgi */
+        }
+
+        /* Köşe Şeritleri */
+        .corner-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-style: solid;
+            border-color: var(--brand-red);
+            border-width: 0;
+            opacity: 0.8;
+        }
+
+        .top-left {
+            top: 40px;
+            left: 40px;
+            border-top-width: 8px;
+            border-left-width: 8px;
+        }
+
+        .bottom-right {
+            bottom: 40px;
+            right: 40px;
+            border-bottom-width: 8px;
+            border-right-width: 8px;
+        }
+
+        /* Logo */
+        .logo-container {
+            width: 280px;
+            height: auto;
+            margin-bottom: 40px;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Metinler */
+        .main-text {
+            font-size: 110px;
+            font-weight: 800;
+            color: var(--brand-red);
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .highlight {
+            color: var(--brand-red);
+        }
+
+        .sub-text {
+            font-size: 80px;
+            font-weight: 650;
+            color: var(--ink);
+            margin-top: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Divider */
+        .divider {
+            width: 100px;
+            height: 6px;
+            background: var(--brand-red);
+            margin: 50px auto;
+            border-radius: 3px;
+        }
+
+        /* Alt Bilgi */
+        .footer-info {
+            position: absolute;
+            bottom: 60px;
+            font-size: 24px;
+            color: #666;
+            font-weight: 500;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-item i {
+            color: var(--brand-red);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="corner-accent top-left"></div>
+    <div class="corner-accent bottom-right"></div>
+
+    <!-- <div class="logo-container">
+        <img src="logo-vector-yazisiz.svg" alt="Logo">
+    </div> -->
+
+    <h1 class="main-text">
+        KONAKLAMA VE<br>
+        <span class="highlight">AKTİVİTE</span>
+    </h1>
+    
+    <div class="divider"></div>
+
+    <div class="sub-text">
+        SATIŞ MERKEZİ
+    </div>
+
+    <!-- <div class="footer-info">
+        <div class="footer-item">
+            <i class="fa-solid fa-globe"></i> www.yenikapadokya.com
+        </div>
+        <div class="footer-item">
+            <i class="fa-brands fa-instagram"></i> @yenikapadokya
+        </div>
+    </div> -->
+
+</body>
+</html>

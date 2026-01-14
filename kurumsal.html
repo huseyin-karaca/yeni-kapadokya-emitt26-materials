@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Kapadokya - Kurumsal Tarifeler</title>
+    <!-- Typography + Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-red: #E30613;
+            --ink: #1f1f1f;
+            --dark: #333333;
+            --paper: #ffffff;
+            --muted: #9aa0a6;
+            --bg-grad: linear-gradient(135deg, #f9f9f9 0%, #ffffff 60%, #ffffff 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--ink);
+        }
+
+        .banner-card {
+            background: var(--bg-grad);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+
+        /* Branding Stripe */
+        .banner-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: var(--brand-red);
+        }
+
+        /* Logo Bölümü */
+        .header-logo {
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo-wrap {
+            width: 180px;
+            height: auto;
+        }
+
+        .logo-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--brand-red);
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-sub {
+            font-size: 13px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #eee;
+            margin: 25px auto;
+            width: 60%;
+        }
+
+        /* Ana İçerik */
+        .main-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .sub-title {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        
+        .sub-title span {
+            color: var(--brand-red);
+            font-weight: 600;
+        }
+
+        /* Liste */
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto 30px auto;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .features-list li {
+            font-size: 15px;
+            margin-bottom: 12px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .features-list li i {
+            margin-right: 12px;
+            color: var(--brand-red);
+            font-size: 14px;
+        }
+
+        /* Alt Bilgi */
+        .disclaimer {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .disclaimer i {
+            color: var(--brand-red);
+        }
+
+        .footer-contact {
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+            font-size: 13px;
+            color: var(--ink);
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--dark);
+        }
+
+        .contact-item i {
+            color: var(--brand-red);
+            width: 16px; 
+            text-align: center;
+        }
+        
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .social-link {
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--brand-red);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .banner-card { 
+                padding: 30px 20px;
+                border-radius: 0;
+                box-shadow: none;
+                max-width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .brand-name { font-size: 24px; }
+            .main-title { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner-card">
+            
+        <header class="header-logo">
+            <div class="logo-wrap">
+                <!-- SVG Logoyu doğrudan img olarak kullanıyoruz, pdf oluşturma scriptleri hallediyor -->
+                <img src="logo-vector-yazisiz.svg" alt="Yeni Kapadokya Logo">
+            </div>
+            <div>
+                <h1 class="brand-name">YENİ KAPADOKYA</h1>
+                <div class="brand-sub">Turizm & Seyahat Acentesi</div>
+            </div>
+        </header>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2 class="main-title">KURUMSAL ÖZEL TARİFELER</h2>
+            <p class="sub-title">
+                Kamu kuruluşları ve<br>
+                kurumsal şirket çalışanlarına <span>özel</span>
+            </p>
+
+            <ul class="features-list">
+                <li><i class="fa-solid fa-check"></i> Ayrıcalıklı fiyatlar</li>
+                <li><i class="fa-solid fa-check"></i> Öncelikli rezervasyon</li>
+                <li><i class="fa-solid fa-check"></i> Profesyonel hizmet anlayışı</li>
+            </ul>
+        </section>
+
+        <div class="disclaimer">
+            <i class="fa-solid fa-lock"></i>
+            <span>Anlaşmalı kurum ve kuruluşlara tabidir.</span>
+        </div>
+
+        <footer class="footer-contact">
+            <ul class="contact-list">
+                <li class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Cumhuriyet, Atatürk Blv. No:48/1 Ürgüp, Nevşehir</span>
+                </li>
+                <li class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+905439533850">+90 543 953 3850</a>
+                </li>
+                <li class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:info@yenikapadokya.com">info@yenikapadokya.com</a>
+                </li>
+                <li class="contact-item">
+                    <i class="fa-solid fa-globe"></i>
+                    <a href="https://www.yenikapadokya.com">www.yenikapadokya.com</a>
+                </li>
+            </ul>
+            
+            <a href="https://www.instagram.com/yenikapadokya/" class="social-link">
+                <i class="fa-brands fa-instagram"></i> @yenikapadokya
+            </a>
+        </footer>
+
+    </div>
+
+</body>
+</html>

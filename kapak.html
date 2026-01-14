@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=200, initial-scale=1.0">
+    <title>Yeni Kapadokya - Kapak Görseli</title>
+    <!-- Typography + Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-red: #E30613;
+            --ink: #1f1f1f;
+            --dark: #333333;
+            --paper: #ffffff;
+            --muted: #9aa0a6;
+            --bg-grad: linear-gradient(135deg, #f9f9f9 0%, #ffffff 60%, #ffffff 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 200px;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            background: var(--bg-grad);
+            border-bottom: 6px solid var(--brand-red); /* Alt şerit */
+        }
+
+        /* Sol Taraf: Logo ve Marka İsmi */
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-left: 50px;
+        }
+
+        .logo-container {
+            width: 130px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--brand-red);
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--dark);
+            margin-top: 6px;
+            opacity: 0.8;
+        }
+
+        /* Sağ Taraf: İletişim ve Slogan */
+        .info-section {
+            padding-right: 50px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .slogan {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 25px;
+            font-size: 14px;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            color: var(--brand-red);
+            font-size: 16px;
+        }
+
+        .highlight {
+            color: var(--brand-red);
+        }
+
+        /* Dekoratif Arka Plan Elemanları (Opsiyonel silik desen) */
+        .bg-pattern {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background-image: radial-gradient(circle at 10% 10%, #eee 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <div class="brand-section">
+        <div class="logo-container">
+            <img src="logo-vector-yazisiz.svg" alt="Yeni Kapadokya Logo">
+        </div>
+        <div class="brand-text">
+            <h1 class="brand-title">YENİ<br>KAPADOKYA</h1>
+            <span class="brand-subtitle">Turizm & Seyahat Acentesi</span>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="slogan">YEREL UZMANLIK, <span class="highlight">KÜRESEL STANDARTLAR.</span></div>
+        <div class="contact-row">
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i> +90 543 953 3850
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-globe"></i> www.yenikapadokya.com
+            </div>
+            <div class="contact-item">
+                <i class="fa-brands fa-instagram"></i> @yenikapadokya
+            </div>
+        </div>
+    </div>
+</body>
+</html>
