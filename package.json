@@ -1,5 +1,5 @@
 {
-  "name": "fuar2026-rollup-pdf",
+  "name": "emitt2026-materials",
   "private": true,
   "version": "1.0.0",
   "description": "Convert turkce.html and ingilizce.html to print-ready PDFs using Puppeteer.",
@@ -8,15 +8,16 @@
     "node": ">=18"
   },
   "scripts": {
-    "pdf": "node scripts/pdf.js",
-    "pdf:kartvizit": "node scripts/pdf-kartvizit.js",
-    "pdf:kartvizit:raster": "node scripts/pdf-kartvizit.js --raster",
+    "pdf:rollup": "node scripts/pdf-rollup.js",
+    "pdf:rollup:raster": "node scripts/pdf-rollup.js --raster",
     "pdf:brochure": "node scripts/pdf-brochure.js",
     "pdf:brochure:raster": "node scripts/pdf-brochure.js --raster",
+    "pdf:businesscard": "node scripts/pdf-businesscard.js",
     "render:kapak": "node scripts/render-kapak.js",
     "render:kare": "node scripts/render-kare.js"
   },
   "dependencies": {
+    "pdf-lib": "^1.17.1",
     "puppeteer": "24.34.0"
   }
 }

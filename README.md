@@ -2,6 +2,8 @@
 
 Bu proje, Yeni Kapadokya Turizm'in EMITT 2026 fuarı için hazırlanan tanıtım materyallerini (broşür, roll-up, kartvizit, sosyal medya görselleri) içerir. Tasarımlar HTML/CSS ile hazırlanmış olup, Puppeteer script'leri aracılığıyla yüksek kaliteli PDF ve PNG formatlarına dönüştürülmektedir.
 
+Proje boyunca yapay zeka araçlarından yoğun şekilde faydalanılmıştır; bu sayede sıfır HTML/CSS bilgisinden tasarım üretimi ve hızlı iterasyon mümkün olmuştur. Buna rağmen bazı kısımlarda hatalar veya gereğinden kompleks çözümler bulunabilir—geri bildirim ve iyileştirmelere açıktır.
+
 ## Proje İçeriği
 
 - **Broşür:** A4 3 kırım (TR ve EN)
@@ -10,8 +12,7 @@ Bu proje, Yeni Kapadokya Turizm'in EMITT 2026 fuarı için hazırlanan tanıtım
 - **Sosyal Medya:** Kapak ve Instagram kare görselleri
 
 ## Klasör Yapısı
-
-- `src/`: HTML kaynak dosyaları (`brochure_en.html`, `turkce.html` vb.)
+- `src/`: HTML kaynak dosyaları (`brochure_tr.html`, `brochure_en.html`, `rollup_tr.html`, `rollup_en.html`, `businesscard_tr.html`, `businesscard_en.html` vb.)
 - `assets/`: 
   - `images/`: PNG/JPG görseller
   - `logos/`: SVG logolar
@@ -29,29 +30,30 @@ npm install
 ## Kullanım (PDF ve Görsel Üretimi)
 
 Tüm çıktılar `dist/` klasörüne kaydedilir.
+_İsterseniz aynı işlemleri `npm run` üzerinden de çalıştırabilirsiniz (ör. `npm run pdf:rollup`, `npm run pdf:brochure`, `npm run pdf:businesscard`)._
 
 ### 1. Roll-up (TR + EN)
 ```bash
-npm run pdf
+node scripts/pdf-rollup.js
 ```
-_Raster çıktı (gölgeler için daha güvenli) için:_ `npm run pdf -- --raster`
+_Raster çıktı (gölgeler için daha güvenli) için:_ `node scripts/pdf-rollup.js --raster`
 
 ### 2. Broşür (TR + EN)
 ```bash
-npm run pdf:brochure
+node scripts/pdf-brochure.js
 ```
-_Raster çıktı için:_ `npm run pdf:brochure:raster`
+_Raster çıktı için:_ `node scripts/pdf-brochure.js --raster`
 
 ### 3. Kartvizit (TR + EN)
 ```bash
-npm run pdf:kartvizit
+node scripts/pdf-businesscard.js
 ```
-_Raster çıktı için:_ `npm run pdf:kartvizit:raster`
+Not: Kartvizitte `.logo-wrap img` için **SVG** veya **PDF** kaynak kullanabilirsiniz. Eğer `.pdf` verilirse, script logoyu PDF’e “stamp” ederek ekler (Chrome’un `<img src="...pdf">` render edememesi sorunu için).
 
 ### 4. Sosyal Medya Görselleri
 ```bash
-npm run render:kapak   # Kapak görseli (kapak.png)
-npm run render:kare    # Instagram kare görseli (instagram-kare.png)
+node scripts/render-kapak.js   # Kapak görseli (kapak.png)
+node scripts/render-kare.js    # Instagram kare görseli (instagram-kare.png)
 ```
 
 ## Notlar

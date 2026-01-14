@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll-up Design B - Light Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* Sunum için tarayıcı arka planı */
+        body { font-family: 'Montserrat', sans-serif; background-color: #e0e0e0; display: flex; justify-content: center; padding: 20px; }
+
+        .rollup-container {
+            width: 850px; height: 2000px;
+            background: #fff; /* Açık Zemin */
+            /* Arka plan görselinin üzerine beyaz bir katman atıyoruz */
+            background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.70)), url('../../background.jpeg');
+            background-size: cover; background-position: center;
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column; padding: 0;
+            box-shadow: 0 0 50px rgba(0,0,0,0.15); /* Hafif gölge */
+        }
+
+        .content { padding: 80px 60px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+
+        /* Header */
+        header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid #D32F2F; padding-bottom: 20px; display: inline-block; width: 100%;}
+        .brand-name { font-size: 4rem; font-weight: 900; color: #222; letter-spacing: -1px; } /* Koyu Renk Yazı */
+        
+        /* Hero */
+        .hero-title { font-size: 4.5rem; font-weight: 800; color: #222; line-height: 1.1; text-transform: uppercase; }
+        .hero-highlight { color: #D32F2F; } /* Kırmızı Vurgu */
+        .hero-p { color: #555; font-size: 1.7rem; margin-top: 15px; font-weight: 500;} /* Orta gri açıklama */
+
+        /* Light Glass Cards */
+        .glass-box {
+            background: rgba(255, 255, 255, 0.65); /* Daha opak beyaz */
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9); /* Beyaz kenarlık */
+            border-radius: 20px; padding: 30px; margin-bottom: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Yumuşak gölge */
+        }
+
+        .feature-item { display: flex; align-items: center; margin-bottom: 25px; }
+        .feature-item:last-child { margin-bottom: 0; }
+        
+        .icon-box { 
+            width: 60px; height: 60px; background: #D32F2F; color: white; border-radius: 12px;
+            display: flex; justify-content: center; align-items: center; font-size: 26px; margin-right: 20px; flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+        }
+        
+        .f-title { color: #222; font-size: 2rem; font-weight: 800; } /* Koyu Başlık */
+        .f-desc { color: #555; font-size: 1.4rem; font-weight: 500; } /* Gri Açıklama */
+
+        /* Showroom Highlight */
+        .showroom-section { text-align: center; margin-top: 20px; position: relative;}
+        .showroom-title { 
+            background: #D32F2F; color: white; display: inline-block; padding: 10px 40px; 
+            font-size: 2rem; font-weight: 800; transform: translateY(20px); position: relative; z-index: 2; border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+        }
+        .showroom-img-wrap { 
+            border: 2px solid #D32F2F; padding: 8px; border-radius: 20px; 
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        .footer { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 30px; }
+        .cta { font-size: 1.8rem; color: #222; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; }
+        .contact-row { display: flex; align-items: center; justify-content: space-between; }
+        .c-item { color: #333; font-size: 1.5rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: 600;}
+        .c-item i { color: #D32F2F; width: 25px; text-align: center;}
+
+        /* QR Code Style adjust for light theme */
+        .qr-img { border: 4px solid #fff; border-radius: 10px; width: 140px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="rollup-container">
+        <div class="content">
+            <header>
+                <div class="brand-name">YENİ KAPADOKYA TURİZM</div>
+            </header>
+
+            <div style="margin-bottom: 40px;">
+                <div class="hero-title">KAPADOKYA'DAKİ OPERASYON <br><span class="hero-highlight">GÜCÜNÜZ</span></div>
+                <p class="hero-p">Siz Satışa Odaklanın, Operasyonu Bize Bırakın.</p>
+            </div>
+
+            <div class="glass-box">
+                <div class="feature-item">
+                    <div class="icon-box"><i class="fas fa-check"></i></div>
+                    <div><div class="f-title">Kapsamlı Hizmet</div><div class="f-desc">Konaklama, Balon, Transfer, Turlar. Tek bir noktada.</div></div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box"><i class="fas fa-users"></i></div>
+                    <div><div class="f-title">100.000+ Operasyon</div><div class="f-desc">Yıllık 25.000+ mutlu misafir.</div></div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box"><i class="fas fa-star"></i></div>
+                    <div><div class="f-title">Yüksek Memnuniyet</div><div class="f-desc">Google'da 5.0/5.0 Puan.</div></div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box"><i class="fas fa-handshake"></i></div>
+                    <div><div class="f-title">Geniş Tedarik Ağı</div><div class="f-desc">En yoğun anda bile çözüm garantisi.</div></div>
+                </div>
+            </div>
+
+            <div class="showroom-section">
+                <div class="showroom-title">SHOWROOM OFİS</div>
+                <div class="showroom-img-wrap">
+                    <img src="../../ofis.jpeg" style="width:100%; height: 300px; object-fit: cover; border-radius: 15px; opacity: 1;" alt="Showroom">
+                </div>
+                <p style="color: #666; margin-top: 15px; font-size: 1.4rem; font-weight: 500;">Misafirleriniz için dijital ve fiziksel konfor.</p>
+            </div>
+
+            <div class="footer">
+                <div class="cta">Tanışmak İçin Standımızdayız</div>
+                <div class="contact-row">
+                    <div>
+                        <div class="c-item"><i class="fas fa-phone"></i> +90 543 953 3850</div>
+                        <div class="c-item"><i class="fas fa-envelope"></i> info@yenikapadokya.com</div>
+                        <div class="c-item"><i class="fas fa-globe"></i> www.yenikapadokya.com</div>
+                    </div>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://instagram.com/yenikapadokya" class="qr-img" alt="QR">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll-up Design C - Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #555; display: flex; justify-content: center; padding: 20px; zoom: 0.4; }
+
+        .rollup-container {
+            width: 850px; height: 2000px;
+            background: #fdfdfd;
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+
+        /* Diagonal Arka Plan */
+        .bg-shape {
+            position: absolute; top: 0; left: 0; width: 100%; height: 600px;
+            background: linear-gradient(135deg, rgba(211,47,47,0.95) 0%, rgba(183,28,28,0.55) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+            z-index: 0;
+        }
+
+        .content { position: relative; z-index: 1; padding: 60px; height: 100%; display: flex; flex-direction: column; }
+
+        header { text-align: center; margin-bottom: 40px; color: white; }
+        .brand-big { font-size: 4rem; font-weight: 900; }
+        .brand-small { font-size: 2rem; letter-spacing: 5px; opacity: 0.9; }
+
+        .hero { text-align: center; color: white; margin-bottom: 60px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; }
+        .hero span { color: #ffcccb; } /* Açık kırmızı */
+
+        /* GRID LAYOUT FOR FEATURES */
+        .features-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            margin-bottom: 40px;
+        }
+        .grid-item {
+            background: white; border-radius: 20px; padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-bottom: 5px solid #D32F2F;
+            text-align: center;
+        }
+        .grid-icon { font-size: 3rem; color: #D32F2F; margin-bottom: 15px; }
+        .grid-title { font-size: 1.6rem; font-weight: 700; color: #333; margin-bottom: 5px; }
+        .grid-desc { font-size: 1.2rem; color: #666; line-height: 1.4; }
+
+        /* IMAGE CARD */
+        .image-card {
+            background: #fff; padding: 15px; border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 30px;
+        }
+        .badge-header { 
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 10px;
+        }
+        .badge-title { font-size: 2rem; font-weight: 800; color: #D32F2F; }
+
+        /* CTA BOX (Upper) */
+        .cta-box {
+            background: rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 20px;
+            text-align: center; margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .cta-big { font-size: 1.8rem; font-weight: 900; color: #D32F2F; margin: 0; }
+
+        /* FOOTER (Contact) */
+        .footer { 
+            background: #f4f4f4; border-radius: 20px; padding: 30px; margin-top: auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .contact-group div { font-size: 1.6rem; margin-bottom: 8px; font-weight: 600; color: #444; }
+        .contact-group i { color: #D32F2F; width: 30px; text-align: center; }
+
+        
+    </style>
+
+</head>
+<body>
+
+    <div class="rollup-container">
+        <div class="bg-shape"></div>
+        
+        <div class="content">
+            <header>
+                <div class="brand-big">YENİ KAPADOKYA</div>
+                <div class="brand-small">TURİZM</div>
+                <!-- Boşluk eklemek için aşağıya bir <br> veya margin içeren ek <div> ekleyebilirsiniz. Örnek: -->
+                <!-- <div style="margin-top:30px;"></div> -->
+                <!-- veya -->
+                <!-- <br> -->
+            </header>
+
+            <div style="margin-top:100px;"></div>
+
+            <div class="hero">
+                <h1>KAPADOKYA'DAKİ<br><span>OPERASYON GÜCÜNÜZ</span></h1>
+                <p style="font-size: 1.4rem; margin-top: 10px; opacity: 0.9;">Siz Satışa Odaklanın, Operasyonu Bize Bırakın.</p>
+            </div>
+
+            <div style="margin-top:100px;"></div>
+
+            <div class="cta-box">
+                <div class="cta-big">TANIŞMAK İÇİN STANDIMIZA BEKLİYORUZ</div>
+            </div>
+
+            <div style="margin-top:150px;"></div>
+
+            <div class="features-grid">
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="grid-title">Bütüncül Hizmet</div>
+                    <div class="grid-desc">Konaklama, Balon, Transfer ve Turlar tek çatı altında.</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fas fa-star"></i></div>
+                    <div class="grid-title">5.0/5.0 Puan</div>
+                    <div class="grid-desc">Google Haritalar'da bölgenin güven lideri.</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fas fa-users"></i></div>
+                    <div class="grid-title">100k+ Operasyon</div>
+                    <div class="grid-desc">Yıllık 25.000+ mutlu misafir tecrübesi.</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fas fa-infinity"></i></div>
+                    <div class="grid-title">Güçlü Tedarik</div>
+                    <div class="grid-desc">Sezonun en yoğun anında bile yer garantisi.</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fas fa-headset"></i></div>
+                    <div class="grid-title">7/24 Acenta Desteği</div>
+                    <div class="grid-desc">Operasyon anında kesintisiz iletişim hattı.</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="grid-title">Profesyonel Ekip</div>
+                    <div class="grid-desc">Seçkin, tecrübeli, çok dilli danışman kadrosu.</div>
+                </div>
+            </div>
+
+            <div class="footer" style="border: 2.5px solid #D32F2F; border-radius: 14px; padding: 25px 28px;">
+                <div style="flex:1;">
+                    <div class="contact-group">
+                        <div><i class="fas fa-phone"></i> +90 543 953 3850</div>
+                        <div><i class="fas fa-envelope"></i> info@yenikapadokya.com</div>
+                        <div><i class="fab fa-instagram"></i> @yenikapadokya</div>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://instagram.com/yenikapadokya" style="width: 120px; border-radius: 10px;" alt="QR">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

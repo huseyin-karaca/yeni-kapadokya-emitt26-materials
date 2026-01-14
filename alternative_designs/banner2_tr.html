@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yeni Kapadokya - Rollup Banner 2 (Partner TR) - Revize</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+        @page {
+            size: 850mm 2000mm;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: white;
+            width: 850mm;
+            height: 2000mm;
+            overflow: hidden;
+        }
+
+        .banner-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        /* Bold Angle Background */
+        .angle-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600mm;
+            height: 800mm;
+            background: #E30613;
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 60mm 50mm;
+            box-sizing: border-box;
+        }
+
+        /* Logo */
+        .logo-container {
+            width: 500px;
+            margin-bottom: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .logo-container img {
+            width: 100%;
+        }
+
+        /* Headline */
+        h1.main-title {
+            font-size: 80pt;
+            font-weight: 900;
+            color: #222; /* Changed to dark for contrast against white, usually */
+            /* But here title is on white/light grey, let's make it dark grey/black and red */
+            line-height: 1.0;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+        }
+
+        .red-text { color: #E30613; }
+        .white-text { color: white; } /* If overlapping red area */
+
+        /* Since the red triangle is top right, let's keep text left-aligned */
+
+        h2.subtitle {
+            font-size: 36pt;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 80px;
+            width: 80%;
+        }
+
+        /* Partner Benefits List - HUGE */
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 40px;
+            border-radius: 0 50px 50px 0; /* Rounded right side */
+            border-left: 20px solid #E30613;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            width: 100%; /* Stretch */
+        }
+
+        .check-icon {
+            font-size: 60pt;
+            color: #E30613;
+            margin-right: 40px;
+            font-weight: 900;
+        }
+
+        .benefit-text {
+            font-size: 40pt;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.1;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            margin-top: auto;
+            background: #222;
+            color: white;
+            padding: 80px;
+            text-align: center;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-title {
+            font-size: 55pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #E30613;
+        }
+
+        .cta-desc {
+            font-size: 30pt;
+            font-weight: 400;
+            color: white;
+        }
+
+        /* Footer Mini */
+        .footer-mini {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 24pt;
+            color: #777;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <div class="angle-bg"></div>
+
+        <div class="content">
+            <div class="logo-container">
+                <img src="../../logo.png" alt="Logo">
+            </div>
+
+            <!-- Header Text, partly over red? No, keep it clean on left. -->
+            <h1 class="main-title">
+                OPERASYON YÜKÜNÜ<br>
+                <span class="red-text">BİZE BIRAKIN</span>
+            </h1>
+            <h2 class="subtitle">Siz sadece satışa odaklanın, Kapadokya'daki tüm operasyonu biz yönetelim.</h2>
+
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">SORUNSUZ KONAKLAMA & TRANSFER</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">GARANTİLİ BALON KONTENJANI</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">YERLİ PAZARA ÖZEL FİYATLAR</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">7/24 SAHA DESTEĞİ</div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <div class="cta-title">TANIŞMAK İÇİN STANDIMIZA BEKLİYORUZ</div>
+                <div class="cta-desc">Karlı Bir İş Ortaklığı İçin İlk Adımı Atın</div>
+            </div>
+
+            <div class="footer-mini">
+                www.yenikapadokya.com  |  +90 543 953 3850
+            </div>
+        </div>
+    </div>
+</body>
+</html>

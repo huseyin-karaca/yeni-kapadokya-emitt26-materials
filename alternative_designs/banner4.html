@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll-up Design A - White</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #e0e0e0; display: flex; justify-content: center; padding: 20px; }
+
+        .rollup-container {
+            width: 850px; height: 2000px;
+            background-color: #fff;
+            position: relative; overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column;
+        }
+
+        /* Üst Kısım Tasarımı */
+        .top-banner {
+            background: #D32F2F;
+            height: 180px;
+            display: flex; align-items: center; justify-content: center;
+            border-bottom-left-radius: 60px;
+            border-bottom-right-radius: 60px;
+        }
+        .brand-name { font-size: 4.5rem; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: -1px; }
+        
+        .content { padding: 60px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+
+        /* Hero */
+        .hero-message { margin-bottom: 50px; border-left: 15px solid #D32F2F; padding-left: 30px; }
+        .hero-title { font-size: 3.8rem; font-weight: 800; color: #222; line-height: 1.1; }
+        .hero-highlight { color: #D32F2F; }
+        .sub-text { font-size: 1.6rem; color: #555; margin-top: 15px; font-weight: 500; }
+
+        /* Özellik Listesi (Clean Style) */
+        .feature-list { list-style: none; margin-bottom: 40px; }
+        .feature-item { 
+            display: flex; align-items: flex-start; margin-bottom: 30px; 
+            background: #f9f9f9; padding: 20px; border-radius: 15px; border-left: 5px solid #D32F2F;
+        }
+        .check-icon { 
+            font-size: 2.5rem; color: #D32F2F; margin-right: 25px; margin-top: 5px; width: 40px; text-align: center;
+        }
+        .feature-text { font-size: 2rem; font-weight: 700; color: #333; display: block;}
+        .feature-desc { font-size: 1.4rem; font-weight: 400; color: #666; margin-top: 5px; display: block; }
+
+        /* Showroom Alanı */
+        .special-badge {
+            background: #fff; border: 2px solid #eee;
+            padding: 30px; border-radius: 30px; text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .badge-title { font-size: 2.5rem; font-weight: 800; color: #222; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;}
+
+        /* Footer */
+        .footer { background: #222; color: #fff; padding: 50px; margin-top: auto; border-top: 10px solid #D32F2F; }
+        .cta-text { font-size: 2rem; font-weight: 700; margin-bottom: 30px; text-align: center; color: #D32F2F; }
+        .contact-box { display: flex; justify-content: space-between; align-items: center; }
+        .contact-info { font-size: 1.6rem; line-height: 1.8; }
+        .contact-info i { color: #D32F2F; width: 30px; }
+        
+        .qr-wrapper { background: white; padding: 10px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="rollup-container">
+        <div class="top-banner">
+            <div class="brand-name">YENİ KAPADOKYA</div>
+        </div>
+        
+        <div class="content">
+            <div class="hero-message">
+                <div class="hero-title">KAPADOKYA'DAKİ<br><span class="hero-highlight">OPERASYON GÜCÜNÜZ</span></div>
+                <p class="sub-text">Siz Satışa Odaklanın, Operasyonu Bize Bırakın.</p>
+            </div>
+
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="check-icon"><i class="fas fa-check"></i></div>
+                    <div>
+                        <span class="feature-text">Bütüncül Hizmet</span>
+                        <span class="feature-desc">Konaklama, Balon, Transfer ve Turlar tek çatı altında.</span>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="check-icon"><i class="fas fa-users"></i></div>
+                    <div>
+                        <span class="feature-text">Yıllık 100.000+ Operasyon</span>
+                        <span class="feature-desc">25.000+ Misafir ile kesintisiz hizmet.</span>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="check-icon"><i class="fas fa-star"></i></div>
+                    <div>
+                        <span class="feature-text">Yüksek Memnuniyet</span>
+                        <span class="feature-desc">Google Haritalar'da 5.0/5.0 Puan ile lider.</span>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="check-icon"><i class="fas fa-infinity"></i></div>
+                    <div>
+                        <span class="feature-text">Geniş Tedarik Ağı</span>
+                        <span class="feature-desc">Sezonun en yoğun anında bile çözüm garantisi.</span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="special-badge">
+                <div class="badge-title">SHOWROOM OFİS</div>
+                <img src="../../ofis.jpeg" style="width:100%; border-radius:15px; height: 280px; object-fit: cover; margin-bottom: 15px;" alt="Ofis">
+                <div style="font-size: 1.4rem; color: #555;">Misafirlerinizi hem dijitalde hem fiziksel ofisimizde profesyonelce karşılıyoruz.</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="cta-text">TANIŞMAK İÇİN STANDIMIZA BEKLİYORUZ</div>
+            <div class="contact-box">
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> +90 543 953 3850</div>
+                    <div><i class="fas fa-envelope"></i> info@yenikapadokya.com</div>
+                    <div><i class="fas fa-globe"></i> www.yenikapadokya.com</div>
+                    <div style="color: #ccc; margin-top:5px;"><i class="fab fa-instagram"></i> @yenikapadokya</div>
+                </div>
+                <div class="qr-wrapper">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://instagram.com/yenikapadokya" width="130" alt="QR">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

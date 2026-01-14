@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yeni Kapadokya - Kartvizit</title>
+
+  <!-- Typography + Icons (broşürle aynı yaklaşım) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root{
+      --brand-red:#E30613;
+      --ink:#1f1f1f;
+      --dark:#333333;
+      --paper:#ffffff;
+      --muted:#9aa0a6;
+      --safe:3mm;
+      --card-w:85mm;
+      --card-h:55mm;
+
+      /* FRONT logo controls (edit only these) */
+      --logo-w: 66mm;
+      --logo-h: 44mm; /* keep <= ~40mm for 55mm card height */
+      --logo-y: -5mm;  /* + down, - up (does NOT change size) */
+      --logo-fit: contain; /* contain (no crop) | cover (fills, may crop) */
+
+      /* FRONT layout fine-tuning */
+      --front-x: 0mm;  /* + right, - left */
+      --front-y: 0mm; /* + down, - up */
+
+      /* BACK layout fine-tuning */
+      --back-x: 0mm;   /* + right, - left */
+      --back-y: 0mm;   /* + down, - up */
+    }
+
+    /* Print: each face is its own page (duplex/flip on long edge). */
+    @page {
+      size: var(--card-w) var(--card-h);
+      margin: 0;
+    }
+
+    html, body{
+      height:100%;
+    }
+
+    body{
+      margin:0;
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#e0e0e0;
+      color:var(--ink);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      padding:18px;
+      box-sizing:border-box;
+    }
+
+    /* A single printable card page */
+    .card-page{
+      width:var(--card-w);
+      height:var(--card-h);
+      background:var(--paper);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(0,0,0,0.16);
+      border-radius:6px;
+    }
+
+    /* Shared content wrapper */
+    .content{
+      position:absolute;
+      inset:0;
+      padding:var(--safe);
+      box-sizing:border-box;
+    }
+
+    /* FRONT (logo + slogan, broşür kapağı estetiği) */
+    .front{
+      background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 60%, #ffffff 100%);
+    }
+    .front::before{
+      content:"";
+      position:absolute;
+      top:0; bottom:0; left:0;
+      width:8.5mm;
+      background:var(--brand-red);
+    }
+    .front-inner{
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding-left:8.5mm; /* keep away from stripe */
+      box-sizing:border-box;
+      gap:3.6mm;
+      transform: translate(var(--front-x), calc(2mm + var(--front-y)));
+    }
+    .brand-title{
+      font-size:17pt;
+      line-height:1.02;
+      letter-spacing:0.5px;
+      font-weight:800;
+      color:var(--brand-red);
+      margin:0;
+    }
+    .brand-subtitle{
+      margin:0;
+      font-size:8.4pt;
+      font-weight:400;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      color:var(--ink);
+      opacity:0.75;
+    }
+    .logo-wrap{
+      width:var(--logo-w);
+      height:var(--logo-h);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:4px 0 0;
+    }
+    .logo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit: var(--logo-fit);
+      transform: translateY(var(--logo-y));
+      display:block;
+    }
+
+    /* BACK (broşür arka kapak dili: koyu zemin, beyaz metin, kırmızı vurgu) */
+    .back{
+      background:var(--dark);
+      color:#fff;
+    }
+    .back::before{
+      content:"";
+      position:absolute;
+      left:0; right:0; top:0;
+      height:6.5mm;
+      background:linear-gradient(90deg, var(--brand-red), #ff3b30 55%, var(--brand-red));
+      opacity:0.95;
+      z-index:0;
+    }
+    .back-inner{
+      height:100%;
+      display:grid;
+      grid-template-columns: 1fr 20mm;
+      gap:0mm;
+      align-items:center;
+      padding-top:7mm; /* keep under top bar */
+      padding-left:7mm;
+      box-sizing:border-box;
+      transform: translate(var(--back-x), var(--back-y));
+      position:relative;
+      z-index:1;
+    }
+    .back-title{
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:6.5mm;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      margin:0;
+      font-size:11.5pt;
+      font-weight:800;
+      letter-spacing:0.6px;
+      color:#fff;
+      z-index:2;
+    }
+    .back-left{
+      min-width:0;
+    }
+    .contact-title{
+      margin:0 0 3mm 0;
+      font-size:11.5pt;
+      font-weight:800;
+      letter-spacing:0.6px;
+    }
+    .contact-title .red{
+      color:var(--brand-red);
+    }
+    .contact-list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:2.4mm;
+    }
+    .contact-item{
+      display:grid;
+      grid-template-columns: 4.5mm 1fr;
+      gap:2.2mm;
+      align-items:start;
+      font-size:7.8pt;
+      line-height:1.25;
+      color:rgba(255,255,255,0.86);
+    }
+    .contact-item i{
+      margin-top:0.4mm;
+      color:rgba(255,255,255,0.85);
+    }
+    .contact-item a{
+      color:#fff;
+      text-decoration:none;
+      border-bottom:none;
+    }
+    .contact-item strong{
+      color:#fff;
+      font-weight:700;
+    }
+    .micro{
+      margin-top:3mm;
+      font-size:7.1pt;
+      color:rgba(255,255,255,0.62);
+      letter-spacing:0.2px;
+    }
+    .micro .red{
+      color:rgba(227,6,19,0.95);
+      font-weight:700;
+    }
+
+    .qr{
+      width:20mm;
+      height:20mm;
+      background:#fff;
+      border-radius:4px;
+      padding:2mm;
+      box-sizing:border-box;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    .qr img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .qr-caption{
+      margin-top:1.6mm;
+      font-size:6.6pt;
+      color:rgba(255,255,255,0.62);
+      text-align:center;
+      letter-spacing:0.2px;
+    }
+
+    /* Print-only adjustments */
+    @media print{
+      body{
+        background:#fff;
+        padding:0;
+        gap:0;
+      }
+      .card-page{
+        box-shadow:none;
+        border-radius:0;
+      }
+      .card-page + .card-page{
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRONT -->
+  <section class="card-page front" aria-label="Kartvizit Ön Yüz">
+    <div class="content front-inner">
+      <h1 class="brand-title">YENİ<br>KAPADOKYA</h1>
+      <p class="brand-subtitle">Turizm &amp; Seyahat Acentesi</p>
+
+      <div class="logo-wrap" aria-hidden="true">
+        <img src="../assets/logos/logo-inkscape-yazisiz.pdf" alt="Yeni Kapadokya Logo" />
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- BACK -->
+  <section class="card-page back" aria-label="Kartvizit Arka Yüz">
+    <h2 class="back-title">BİZE ULAŞIN</h2>
+    <div class="content back-inner">
+      <div class="back-left">
+        <ul class="contact-list">
+          <li class="contact-item">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <div>
+              Cumhuriyet, Atatürk Blv. No:48/1 Ürgüp, Nevşehir, Türkiye
+            </div>
+          </li>
+          <li class="contact-item">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <div>
+              <a href="tel:+905439533850">+90 543 953 3850</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <div>
+              <a href="mailto:info@yenikapadokya.com">info@yenikapadokya.com</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+            <div>
+              <a href="https://www.yenikapadokya.com">www.yenikapadokya.com</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <div>
+              <a href="https://www.instagram.com/yenikapadokya/">@yenikapadokya</a>
+            </div>
+          </li>
+        </ul>
+
+        <!-- <div class="micro">
+          <span class="red">Not:</span> Baskıda “Flip on long edge / Uzun kenardan çevir” ile çift taraflı çıktıda ön-arka hizası en sağlıklı olur.
+        </div> -->
+      </div>
+
+      <div class="back-qr">
+        <div class="qr" aria-label="Web sitesi QR kodu">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.instagram.com/yenikapadokya/"
+            alt="https://www.yenikapadokya.com QR"
+          />
+        </div>
+        <!-- <div class="qr-caption">QR ile siteye gidin</div> -->
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
