@@ -4,6 +4,8 @@ Bu proje, Yeni Kapadokya Turizm'in EMITT 2026 fuarı için hazırlanan tanıtım
 
 Proje boyunca yapay zeka araçlarından yoğun şekilde faydalanılmıştır; bu sayede sıfır HTML/CSS bilgisinden tasarım üretimi ve hızlı iterasyon mümkün olmuştur. Buna rağmen bazı kısımlarda hatalar veya gereğinden kompleks çözümler bulunabilir—geri bildirim ve iyileştirmelere açıktır.
 
+![Roll-up EN Preview](assets/images/rollup-en-ss.png)
+
 ## Proje İçeriği
 
 - **Broşür:** A4 3 kırım (TR ve EN)
@@ -18,6 +20,7 @@ Proje boyunca yapay zeka araçlarından yoğun şekilde faydalanılmıştır; bu
   - `logos/`: SVG logolar
 - `scripts/`: PDF ve görsel oluşturma script'leri (Node.js)
 - `dist/`: Oluşturulan çıktı dosyaları (PDF, PNG)
+- `alternative_designs/`: Vazgeçilen tasarımlar
 
 ## Kurulum
 
