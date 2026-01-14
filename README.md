@@ -20,7 +20,7 @@ Proje boyunca yapay zeka araçlarından yoğun şekilde faydalanılmıştır; bu
   - `logos/`: SVG logolar
 - `scripts/`: PDF ve görsel oluşturma script'leri (Node.js)
 - `dist/`: Oluşturulan çıktı dosyaları (PDF, PNG)
-- `alternative_designs/`: Vazgeçilen tasarımlar
+- `old/`: Vazgeçilen tasarımlar
 
 ## Kurulum
 
