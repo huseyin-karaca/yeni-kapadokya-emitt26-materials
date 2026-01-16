@@ -13,6 +13,7 @@
     "pdf:brochure": "node scripts/pdf-brochure.js",
     "pdf:brochure:raster": "node scripts/pdf-brochure.js --raster",
     "pdf:businesscard": "node scripts/pdf-businesscard.js",
+    "pdf:kurumsal": "node scripts/pdf-kurumsal.js",
     "render:kapak": "node scripts/render-kapak.js",
     "render:kare": "node scripts/render-kare.js"
   },
