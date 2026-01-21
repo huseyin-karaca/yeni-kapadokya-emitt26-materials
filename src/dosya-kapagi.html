@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Kapadokya - Dosya Kapağı</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- HTML2PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        :root {
+            --brand-red: #E30613;
+            --ink: #1f1f1f;
+            --dark: #333333;
+            --paper: #ffffff;
+            --bg-grad: linear-gradient(135deg, #fdfdfd 0%, #ffffff 100%);
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .file-cover {
+            width: 210mm;
+            height: 297mm;
+            background: var(--bg-grad);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Space out top and bottom content */
+            padding: 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Decorative Stripe */
+        .brand-stripe {
+            position: absolute;
+            top: 0;
+            left: 20mm;
+            width: 10mm;
+            height: 120px;
+            background: var(--brand-red);
+            z-index: 10;
+        }
+
+        /* Front Cover - Ön Kapak */
+        .front-cover {
+            justify-content: center;
+        }
+
+        /* Top Section: Logo */
+        .header-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30mm;
+        }
+
+        .logo-img {
+            width: 110mm; /* Büyütüldü */
+            height: auto;
+            margin-bottom: -20mm;
+        }
+
+        .brand-name {
+            font-size: 28pt;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--brand-red);
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-sub {
+            font-size: 10pt;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--dark);
+            margin-top: 4mm;
+            opacity: 0.8;
+        }
+
+        /* Middle Section: Slogan */
+        .slogan-section {
+            text-align: center;
+        }
+
+        .slogan {
+            font-size: 14pt;
+            font-weight: 600;
+            color: var(--ink);
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 8mm 0;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        /* Back Cover - Arka Kapak */
+        .back-cover {
+            justify-content: flex-end;
+        }
+
+        /* Bottom Section: Contact */
+        .footer-section {
+            width: 100%;
+            border-top: 3px solid var(--brand-red);
+            padding-top: 10mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .contact-block {
+            font-size: 10pt;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        .contact-block strong {
+            display: block;
+            color: var(--brand-red);
+            font-size: 11pt;
+            margin-bottom: 3mm;
+            font-weight: 700;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .contact-list i {
+            color: var(--brand-red);
+            width: 18px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .contact-list a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .qr-area {
+            text-align: right;
+        }
+
+        .qr-code {
+            width: 40mm;
+            height: 40mm;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: var(--brand-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: #c40510;
+        }
+
+        @media print {
+            body {
+                background: none;
+                display: block;
+            }
+            .controls {
+                display: none;
+            }
+            .file-cover {
+                width: 210mm;
+                height: 297mm;
+                box-shadow: none;
+                page-break-after: always;
+                margin: 0;
+            }
+            .file-cover:last-child {
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button onclick="downloadPDF()" class="btn">
+            <i class="fa-solid fa-file-pdf"></i> PDF İndir
+        </button>
+    </div>
+
+    <div id="content">
+        <!-- ÖN KAPAK -->
+        <div class="file-cover front-cover">
+            <div class="brand-stripe"></div>
+
+            <div class="header-section">
+                <img src="../assets/logos/logo-vector-yazisiz.svg" alt="Yeni Kapadokya Logo" class="logo-img">
+                <h1 class="brand-name">YENİ<br>KAPADOKYA</h1>
+                <div class="brand-sub">Turizm & Seyahat Acentesi</div>
+            </div>
+
+            <div class="slogan-section">
+                <div class="slogan">YEREL UZMANLIK, KÜRESEL STANDARTLAR.</div>
+            </div>
+        </div>
+
+        <!-- ARKA KAPAK -->
+        <div class="file-cover back-cover">
+            <div class="brand-stripe"></div>
+
+            <div class="footer-section">
+                <div class="contact-block">
+                    <strong>İLETİŞİM</strong>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Cumhuriyet, Atatürk Blv. No:48/1<br>Ürgüp, Nevşehir, Türkiye</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+905439533850">+90 543 953 3850</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:info@yenikapadokya.com">info@yenikapadokya.com</a>
+                        </li>
+                    </ul>
+                    <ul class="contact-list" style="margin-top: 0mm;">
+
+                        <li>
+                            <i class="fa-brands fa-instagram"></i>
+                            <a href="https://www.instagram.com/yenikapadokya/">yenikapadokya</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="qr-area">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yenikapadokya.com" alt="QR" class="qr-code">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('content');
+            const opt = {
+                margin:       0,
+                filename:     'yenikapadokya-dosya-kapagi-on-arka.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            // New Promise-based usage:
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Kapadokya - Bez Çanta Tasarımı</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- HTML2PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        :root {
+            --brand-red: #E30613;
+            --ink: #1f1f1f;
+            --dark: #333333;
+            --bag-color: #F0EAD6; /* Eggshell/Canvas color */
+            --bag-texture: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZjBlYWQ2Ii8+CjxwYXRoIGQ9Ik0wIDBoNHYxSDB6bTAgMmg0djFIMHoiIGZpbGw9IiNlOWUzY2MiIGZpbGwtb3BhY2l0eT0iMC41Ii8+Cjwvc3ZnPg=='); /* Simple texture pattern */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Dark background for previewing the bag area */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tote-bag-preview {
+            width: 350mm; /* Approx tote bag width */
+            height: 400mm; /* Approx tote bag height */
+            background-color: var(--bag-color);
+            /* background-image: var(--bag-texture); */ 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        /* Branding */
+        .logo-section {
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 300px; /* Büyütüldü */
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .brand-name {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--brand-red);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .brand-sub {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--dark);
+            margin-top: 10px;
+        }
+
+        /* Slogan */
+        .slogan {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 30px 0 50px 0;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .slogan::before, .slogan::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--brand-red);
+        }
+        
+        .slogan::before { top: 0; }
+        .slogan::after { bottom: 0; }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            color: var(--brand-red);
+            font-size: 16px;
+        }
+        
+        .contact-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: var(--brand-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: #c40510;
+        }
+
+        /* Print Settings */
+        @media print {
+            body {
+                background: none;
+                display: block;
+            }
+            .controls {
+                display: none;
+            }
+            .tote-bag-preview {
+                width: 100%;
+                height: 100%;
+                box-shadow: none;
+                /* background: none;  If we want transparent background for print, but user asked for fabric color background */
+                background-color: var(--bag-color); 
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button onclick="downloadPDF()" class="btn">
+            <i class="fa-solid fa-file-pdf"></i> PDF İndir
+        </button>
+    </div>
+
+    <div class="tote-bag-preview" id="content">
+        
+        <div class="logo-section">
+            <img src="../assets/logos/logo-vector-yazisiz.svg" alt="Yeni Kapadokya Logo" class="logo-img">
+            <h1 class="brand-name">YENİ KAPADOKYA</h1>
+            <div class="brand-sub">Turizm & Seyahat Acentesi</div>
+        </div>
+
+        <div class="slogan">
+            YEREL UZMANLIK, KÜRESEL STANDARTLAR.
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fa-solid fa-globe"></i>
+                <span>www.yenikapadokya.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fa-brands fa-instagram"></i>
+                <span>@yenikapadokya</span>
+            </div>
+            <!-- Optional: Phone might be too much detail for a bag, but user asked for contact info. -->
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>+90 543 953 3850</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('content');
+            const opt = {
+                margin:       0,
+                filename:     'yenikapadokya-bez-canta.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: [350, 400], orientation: 'portrait' }
+            };
+
+            // New Promise-based usage:
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+
+</body>
+</html>

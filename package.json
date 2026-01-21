@@ -14,6 +14,8 @@
     "pdf:brochure:raster": "node scripts/pdf-brochure.js --raster",
     "pdf:businesscard": "node scripts/pdf-businesscard.js",
     "pdf:kurumsal": "node scripts/pdf-kurumsal.js",
+    "pdf:dosya-kapagi": "node scripts/pdf-dosya-kapagi.js",
+    "pdf:dosya-kapagi:raster": "node scripts/pdf-dosya-kapagi.js --raster",
     "render:kapak": "node scripts/render-kapak.js",
     "render:kare": "node scripts/render-kare.js"
   },
