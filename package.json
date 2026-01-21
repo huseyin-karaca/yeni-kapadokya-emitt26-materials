@@ -16,6 +16,8 @@
     "pdf:kurumsal": "node scripts/pdf-kurumsal.js",
     "pdf:dosya-kapagi": "node scripts/pdf-dosya-kapagi.js",
     "pdf:dosya-kapagi:raster": "node scripts/pdf-dosya-kapagi.js --raster",
+    "pdf:lightbox": "node scripts/pdf-lightbox.js",
+    "pdf:lightbox:raster": "node scripts/pdf-lightbox.js --raster",
     "render:kapak": "node scripts/render-kapak.js",
     "render:kare": "node scripts/render-kare.js"
   },
