@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yeni Kapadokya - Kartpostal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --brand-red: #E30613;
+      --ink: #1f1f1f;
+      --dark: #333333;
+      --paper: #ffffff;
+      --muted: #9aa0a6;
+      --safe: 5mm; /* Biraz daha geniş marj */
+      
+      /* A6 Postcard Dimensions */
+      --card-w: 148mm;
+      --card-h: 105mm;
+    }
+
+    @page {
+      size: var(--card-w) var(--card-h);
+      margin: 0;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      background: #e0e0e0; /* Preview background */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .card-page {
+      width: var(--card-w);
+      height: var(--card-h);
+      background: var(--paper);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+
+    /* FRONT DESIGN */
+    .front {
+      background-image: url('../assets/images/postcard-1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Logo Overlay - Top Right */
+    .logo-container {
+      position: absolute;
+      top: -3mm;
+      right: -4mm;
+      width: 40mm; /* Adjust based on logo visibility */
+      /* Add a subtle drop shadow or background if needed for contrast, 
+         but usually a white logo on photos works best. 
+         If the logo is colored, a white container might be needed. 
+         Let's try a clean white pill or just the logo first. 
+         Given "logomuzu koyan", let's use the colored vector but maybe add a white glow or container if needed.
+         Let's try a white container for guaranteed visibility. */
+      background: rgba(255, 255, 255, 0);
+      padding: 3mm 5mm;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0);
+    }
+    
+    .logo-container img {
+      width: 100%;
+      display: block;
+    }
+
+    /* BACK DESIGN */
+    .back {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr; /* Message area | Address/Stamp area */
+      background: #fff;
+    }
+
+    .message-area {
+      padding: var(--safe);
+      padding-left: 8mm;
+      padding-top: 15mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      border-right: 1px solid #eee;
+    }
+
+    .main-message {
+      font-size: 14pt;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--brand-red);
+      margin-bottom: 5mm;
+    }
+    
+    .sub-message {
+      font-size: 9pt;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    .contact-area {
+      padding: var(--safe);
+      padding-top: 10mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Fake stamp area for visual cue */
+    .stamp-placeholder {
+      position: absolute;
+      top: 8mm;
+      right: 8mm;
+      width: 22mm;
+      height: 26mm;
+      border: 1px dashed #ccc;
+      background: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ccc;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-list {
+      margin-top: 35mm; /* Space below stamp */
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 3mm;
+      font-size: 7.5pt;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .contact-item i {
+      color: var(--brand-red);
+      width: 4mm;
+      text-align: center;
+      margin-top: 1px;
+    }
+
+    .contact-item a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .qr-container {
+      margin-top: auto;
+      align-self: flex-end;
+      text-align: right;
+    }
+    
+    .qr-code {
+      width: 18mm;
+      height: 18mm;
+      border: 1px solid #eee;
+      padding: 1mm;
+    }
+
+    /* Print settings */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+        gap: 0;
+        display: block;
+      }
+      .card-page {
+        box-shadow: none;
+        break-after: page;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Front Side -->
+  <div class="card-page front">
+    <div class="logo-container">
+      <img src="../assets/logos/logo-vector-turkce.svg" alt="Yeni Kapadokya Logo">
+    </div>
+  </div>
+
+  <!-- Back Side -->
+  <div class="card-page back">
+    <div class="message-area">
+      <div class="main-message">
+        Masalların gerçeğe dönüştüğü bu büyülü coğrafyada sizi en güzel şekilde ağırlamak için sabırsızlanıyoruz.
+      </div>
+      <div class="sub-message">
+        Yeni Kapadokya ile unutulmaz anılar biriktirmeniz dileğiyle...
+      </div>
+    </div>
+
+    <div class="contact-area">
+      <div class="stamp-placeholder">Pul</div>
+      
+      <ul class="contact-list">
+        <li class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Atatürk Blv. No:48/1<br>Ürgüp, Nevşehir, Türkiye</span>
+        </li>
+        <li class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+905439533850">+90 543 953 3850</a>
+        </li>
+        <li class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:info@yenikapadokya.com">info@yenikapadokya.com</a>
+        </li>
+        <li class="contact-item">
+          <i class="fa-solid fa-globe"></i>
+          <a href="https://www.yenikapadokya.com">www.yenikapadokya.com</a>
+        </li>
+        <li class="contact-item">
+          <i class="fa-brands fa-instagram"></i>
+          <a href="https://www.instagram.com/yenikapadokya/">@yenikapadokya</a>
+        </li>
+      </ul>
+
+      <!-- <div class="qr-container">
+        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.yenikapadokya.com" alt="QR Code">
+      </div> -->
+    </div>
+  </div>
+
+</body>
+</html>
