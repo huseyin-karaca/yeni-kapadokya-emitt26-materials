@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Kapadokya - Davet Mektubu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --brand-red: #E30613;
+            --ink: #1f1f1f;
+            --dark: #333333;
+            --paper: #ffffff;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #fff;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            padding: 0mm 0mm 0mm 0mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: -20mm;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5mm;
+        }
+
+        .logo {
+            height: 75mm;
+        }
+
+        .date {
+            font-size: 10pt;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* BODY CONTENT */
+        .content {
+            padding: 0 25mm;
+            flex-grow: 1;
+            color: var(--dark);
+        }
+
+        h1 {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--brand-red);
+            margin-bottom: 10mm;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 11pt;
+            line-height: 1.8;
+            margin-bottom: 5mm;
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .signature-block {
+            margin-top: 15mm;
+        }
+
+        .sign-name {
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .sign-title {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 15mm 20mm;
+            border-top: 3px solid var(--brand-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5mm 10mm;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 3mm;
+            font-size: 8pt;
+            color: #555;
+        }
+
+        .contact-item i {
+            color: var(--brand-red);
+            font-size: 10pt;
+            width: 5mm;
+            text-align: center;
+        }
+
+        .contact-item a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+        }
+
+        .footer-logo {
+            opacity: 0.1;
+            position: absolute;
+            bottom: -20mm;
+            right: -20mm;
+            width: 100mm;
+            pointer-events: none;
+        }
+
+        /* PRINT OVERRIDES */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <!-- Watermark Logo -->
+        <img src="../assets/logos/logo-vector-yazisiz.svg" class="footer-logo" alt="">
+
+        <div class="header">
+            <img src="../assets/logos/logo-vector-yazisiz.svg" alt="Yeni Kapadokya" class="logo">
+            <!-- Tarih opsiyonel, boş bırakılabilir veya dinamik olabilir. Şimdilik tasarımda yer tutucu. -->
+            <!-- <div class="date">01.02.2026</div> -->
+        </div>
+
+        <div class="content">
+            <h1>Değerli İş Ortağımız,</h1>
+
+            <p>
+                Masalların gerçeğe dönüştüğü, tarihin ve doğanın eşsiz bir uyumla dans ettiği Kapadokya’da, turizm anlayışına yeni bir soluk getirmek üzere yola çıktık.
+            </p>
+
+            <p>
+                <span class="highlight">Yeni Kapadokya Turizm & Seyahat Acentesi</span> olarak, bölgenin köklü mirasını modern hizmet standartlarıyla birleştiriyoruz. Amacımız sadece bir tatil sunmak değil; misafirlerinize hayatları boyunca unutamayacakları, her anı özenle tasarlanmış bir deneyim yaşatmaktır.
+            </p>
+
+            <p>
+                "Yerel Uzmanlık, Küresel Standartlar" mottomuzla; balon turlarından konaklamaya, özel transfer hizmetlerinden rehberli kültür gezilerine kadar operasyonun her aşamasında mükemmelliği hedefliyoruz. Sizin güveniniz ve bizim sahadaki gücümüzle, Kapadokya’daki operasyonlarınızın en sağlam halkası olmaya adayız.
+            </p>
+
+            <p>
+                Sizleri, sunduğumuz ayrıcalıkları yakından tanımaya ve birlikte neler başarabileceğimizi konuşmaya davet ediyoruz.
+            </p>
+
+            <p>İşbirliğimizin uzun soluklu ve verimli olması dileğiyle.</p>
+
+            <div class="signature-block">
+                <div class="sign-name">YENİ KAPADOKYA</div>
+                <div class="sign-title">Turizm & Seyahat Acentesi</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <ul class="contact-list">
+                <li class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Cumhuriyet, Atatürk Blv. No: 48/1<br>Ürgüp, Nevşehir</span>
+                </li>
+                <li class="contact-item">
+                    <i class="fa-solid fa-globe"></i>
+                    <a href="https://www.yenikapadokya.com">www.yenikapadokya.com</a>
+                </li>
+                <li class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+905439533850">+90 543 953 3850</a>
+                </li>
+                <li class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:info@yenikapadokya.com">info@yenikapadokya.com</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

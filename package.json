@@ -18,6 +18,9 @@
     "pdf:dosya-kapagi:raster": "node scripts/pdf-dosya-kapagi.js --raster",
     "pdf:lightbox": "node scripts/pdf-lightbox.js",
     "pdf:lightbox:raster": "node scripts/pdf-lightbox.js --raster",
+    "pdf:awall": "node scripts/pdf-awall.js",
+    "pdf:awall:raster": "node scripts/pdf-awall.js --raster",
+    "pdf:davet": "node scripts/pdf-davet.js",
     "pdf:postcard": "node scripts/pdf-postcard.js",
     "render:kapak": "node scripts/render-kapak.js",
     "render:kare": "node scripts/render-kare.js"
