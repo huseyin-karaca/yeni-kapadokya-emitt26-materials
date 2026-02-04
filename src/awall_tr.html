@@ -37,16 +37,21 @@
             flex-direction: column; 
             align-items: center;
             justify-content: center;
-            gap: 50px; /* Space between logo and text */
+            gap: 0; /* Boşluk sıfırlandı, negatif margin ile kontrol edilebilir */
         }
-
+        
         header { 
             text-align: center; 
             width: 100%;
+            margin-bottom: -150px; /* Logoyu aşağı itmemek için negatif margin'i kaldırdım veya azalttım, burada sıfırlayıp aşağıdakini yukarı çekelim */
+            margin-bottom: 0;
         }
 
-        /* Lightbox Typo & Style */
-        .hero { text-align: center; color: #333; }
+        .hero { 
+            text-align: center; 
+            color: #333; 
+            margin-top: -100px; /* Yazıyı yukarı çekmek için negatif margin */
+        }
         .hero h1 { 
             font-size: 10rem; /* Adjusted for width 1950 vs 3000 */
             font-weight: 800; 
